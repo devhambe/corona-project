@@ -1,28 +1,36 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+function numberWithCommas(x) {
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const Country = (props) => (
 	<div className="country-column col-md-3 clearfix">
 		<img
 			src={`http://catamphetamine.gitlab.io/country-flag-icons/3x2/${props.country.countryCode}.svg`}
 			className="img-fluid"
 			alt={props.country.country}
-		></img>
+		/>
 		<div className="">
 			<h5 className="">{props.country.country}</h5>
 			<h6 className=" mb-2 text-muted">
-				Total Cases: {props.country.totalCases}
+				Total Cases: {numberWithCommas(props.country.totalCases)}
 			</h6>
 			<h6 className=" mb-2 text-muted">
-				Total Deaths: {props.country.totalDeaths}
+				Total Deaths: {numberWithCommas(props.country.totalDeaths)}
 			</h6>
 			<h6 className=" mb-2 text-muted">
-				Total Recovered: {props.country.totalRecovered}
+				Total Recovered:{" "}
+				{numberWithCommas(props.country.totalRecovered)}
 			</h6>
 			<h6 className=" mb-2 text-muted">
 				Active Cases:{" "}
-				{props.country.totalCases -
-					(props.country.totalDeaths + props.country.totalRecovered)}
+				{numberWithCommas(
+					props.country.totalCases -
+						(props.country.totalDeaths +
+							props.country.totalRecovered)
+				)}
 			</h6>
 		</div>
 	</div>
@@ -32,7 +40,7 @@ export default class CountryGrid extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { countries: [] };
+		this.state = { countries: [], search: "" };
 	}
 
 	componentDidMount() {
@@ -46,8 +54,12 @@ export default class CountryGrid extends Component {
 			});
 	}
 
-	countryList() {
-		return this.state.countries.map((currentcountry) => {
+	updateSearch(e) {
+		this.setState({ search: e.target.value.substr(0, 20) });
+	}
+
+	countryList(filteredCountries) {
+		return filteredCountries.map((currentcountry) => {
 			return (
 				<Country country={currentcountry} key={currentcountry._id} />
 			);
@@ -55,10 +67,26 @@ export default class CountryGrid extends Component {
 	}
 
 	render() {
+		const filteredCountries = this.state.countries.filter(
+			(currentcountry) => {
+				return (
+					currentcountry.country
+						.toLowerCase()
+						.indexOf(this.state.search.toLowerCase()) !== -1
+				);
+			}
+		);
+
 		return (
-			<div className="row">
-				{this.countryList()}
-				{/* TODO country filter */}
+			<div className="container-fluid">
+				<input
+					type="text"
+					className="form-control mt-2"
+					placeholder="Search"
+					value={this.state.search}
+					onChange={this.updateSearch.bind(this)}
+				/>
+				<div className="row">{this.countryList(filteredCountries)}</div>
 			</div>
 		);
 	}
