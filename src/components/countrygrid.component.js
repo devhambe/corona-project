@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
-function numberWithCommas(x) {
-	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+import { numberWithCommas } from "../Utils";
 
 const Country = (props) => (
 	<div className="country-column col-md-3 clearfix">

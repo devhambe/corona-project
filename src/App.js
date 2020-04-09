@@ -7,11 +7,13 @@ import "./App.css";
 
 import Navbar from "./components/navbar.component";
 import CountryGrid from "./components/countrygrid.component";
+import MainStats from "./components/mainstats.component";
 
 function App() {
 	return (
 		<Router>
 			<Navbar />
+			<Route path="/" component={MainStats} exact />
 			<Route path="/countries" component={CountryGrid} />
 		</Router>
 	);
