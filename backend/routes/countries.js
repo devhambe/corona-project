@@ -1,10 +1,9 @@
 const router = require("express").Router();
-let Country = require("../models/country.model");
-const country_controller = require("../controllers/countryController");
+const Country = require("../models/country.model");
 
 router.get("/", (req, res) => {
 	Country.find()
-		.sort({ totalCases: -1 })
+		.sort({ totalConfirmed: -1 })
 		.then((countries) => {
 			res.json(countries);
 		})
@@ -12,8 +11,6 @@ router.get("/", (req, res) => {
 			res.status(400).json(`Error: ${error}`);
 		});
 });
-
-router.post("/update", country_controller.country_update);
 
 router.get("/:id", (req, res) => {
 	Country.findById(req.params.id)

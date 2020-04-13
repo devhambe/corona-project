@@ -2,16 +2,8 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const countrySchema = new Schema({
-	country: {
-		type: String,
-		required: true,
-	},
-	countryCode: {
-		type: String,
-		required: true,
-	},
-	countrySlug: {
+const globalSchema = new Schema({
+	name: {
 		type: String,
 		required: true,
 	},
@@ -49,6 +41,6 @@ const countrySchema = new Schema({
 	},
 });
 
-const Country = mongoose.model("Country", countrySchema, "countryresults");
+const Global = mongoose.model("Global", globalSchema, "globalresults");
 
-module.exports = Country;
+module.exports = Global;

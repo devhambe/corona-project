@@ -12,22 +12,16 @@ const Country = (props) => (
 		<div className="">
 			<h5 className="">{props.country.country}</h5>
 			<h6 className=" mb-2 text-muted">
-				Total Cases: {numberWithCommas(props.country.totalCases)}
+				Total Cases: {props.country.totalConfirmed}
 			</h6>
 			<h6 className=" mb-2 text-muted">
-				Total Deaths: {numberWithCommas(props.country.totalDeaths)}
+				Total Deaths: {props.country.totalDeaths}
 			</h6>
 			<h6 className=" mb-2 text-muted">
-				Total Recovered:{" "}
-				{numberWithCommas(props.country.totalRecovered)}
+				Total Recovered: {props.country.totalRecovered}
 			</h6>
 			<h6 className=" mb-2 text-muted">
-				Active Cases:{" "}
-				{numberWithCommas(
-					props.country.totalCases -
-						(props.country.totalDeaths +
-							props.country.totalRecovered)
-				)}
+				Active Cases: {props.country.totalActive}
 			</h6>
 		</div>
 	</div>
@@ -43,8 +37,15 @@ export default class CountryGrid extends Component {
 	componentDidMount() {
 		axios
 			.get("http://localhost:5000/countries/")
-			.then((response) => {
-				this.setState({ countries: response.data });
+			.then((res) => {
+				for (let k in res.data) {
+					for (let i in res.data[k]) {
+						if ((res.data[k][i] === parseInt(res.data[k][i]), 10)) {
+							res.data[k][i] = numberWithCommas(res.data[k][i]);
+						}
+					}
+				}
+				this.setState({ countries: res.data });
 			})
 			.catch((error) => {
 				console.log(error);
