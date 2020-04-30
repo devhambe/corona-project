@@ -3,7 +3,7 @@ import axios from "axios";
 import { numberWithCommas } from "../Utils";
 
 const Country = (props) => (
-	<div className="country-column col-md-3 clearfix">
+	<div className="country-column col-md-3 column">
 		<img
 			src={`http://catamphetamine.gitlab.io/country-flag-icons/3x2/${props.country.countryCode}.svg`}
 			className="img-fluid"

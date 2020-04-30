@@ -25,43 +25,57 @@ export default class GlobalStats extends Component {
 
 	render() {
 		return (
-			<div className="container-fluid">
-				<div className="stats-box">
-					<div className="stat">
-						<h4>
-							Total Cases: {this.state.data.totalConfirmed}
-							<span className="badge badge-primary ml-3">
-								+{this.state.data.newConfirmed}
-							</span>
-						</h4>
-					</div>
+			<div className="stats-box row">
+				<div className="stat col-md-3 column">
+					<h4>
+						<p>Total Cases</p>
+						<p>{this.state.data.totalConfirmed}</p>
+						<span className="badge badge-primary">
+							{this.state.data.newConfirmed} today
+						</span>
+						<div class="progress mx-3 mt-3">
+							<div class="progress-bar bg-primary w-100"></div>
+						</div>
+					</h4>
+				</div>
 
-					<div className="stat">
-						<h4>
-							Total Deaths: {this.state.data.totalDeaths}
-							<span className="badge badge-danger ml-3">
-								+{this.state.data.newDeaths}
-							</span>
-						</h4>
-					</div>
+				<div className="stat col-md-3 column">
+					<h4>
+						<p>Total Deaths</p>
+						<p>{this.state.data.totalDeaths}</p>
+						<span className="badge badge-danger">
+							{this.state.data.newDeaths} today
+						</span>
+						<div class="progress mx-3 mt-3">
+							<div class="progress-bar bg-danger w-100"></div>
+						</div>
+					</h4>
+				</div>
 
-					<div className="stat">
-						<h4>
-							Total Recovered: {this.state.data.totalRecovered}
-							<span className="badge badge-success ml-3">
-								+{this.state.data.newRecovered}
-							</span>
-						</h4>
-					</div>
+				<div className="stat col-md-3 column">
+					<h4>
+						<p>Total Recovered</p>
+						<p>{this.state.data.totalRecovered}</p>
+						<span className="badge badge-success ml-3">
+							{this.state.data.newRecovered} today
+						</span>
+						<div class="progress mx-3 mt-3">
+							<div class="progress-bar bg-success w-100"></div>
+						</div>
+					</h4>
+				</div>
 
-					<div className="stat">
-						<h4>
-							Active Cases: {this.state.data.totalActive}
-							<span className="badge badge-info ml-3">
-								+{this.state.data.newActive}
-							</span>
-						</h4>
-					</div>
+				<div className="stat col-md-3 column">
+					<h4>
+						<p>Active Cases </p>
+						<p>{this.state.data.totalActive}</p>
+						<span className="badge badge-info ml-3">
+							{this.state.data.newActive} today
+						</span>
+						<div class="progress mx-3 mt-3">
+							<div class="progress-bar bg-info w-100"></div>
+						</div>
+					</h4>
 				</div>
 			</div>
 		);

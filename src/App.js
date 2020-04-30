@@ -8,12 +8,14 @@ import "./App.css";
 import Navbar from "./components/navbar.component";
 import CountryGrid from "./components/countrygrid.component";
 import GlobalStats from "./components/globalstats.component";
+import WorldMap from "./components/worldmap.component";
 
 function App() {
 	return (
 		<Router>
 			<Navbar />
 			<Route path="/" component={GlobalStats} exact />
+			<Route path="/" component={WorldMap} exact />
 			<Route path="/countries" component={CountryGrid} />
 		</Router>
 	);

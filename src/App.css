@@ -3,11 +3,15 @@ body {
 	overflow-x: hidden;
 }
 
-.country-column {
+.column {
 	text-align: center;
 	padding: 10px;
 	background-color: white;
 	background-clip: content-box;
+}
+
+.stat h4 {
+	padding: 10px;
 }
 
 .country-column img {
@@ -15,9 +19,14 @@ body {
 	width: 128px;
 }
 
-.stats-box {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+.progress {
+	height: 6px;
+}
+
+.leaflet-container {
+	height: 500px;
+}
+
+.world-map {
+	padding: 15px;
 }
