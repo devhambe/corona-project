@@ -19,12 +19,24 @@ export default class Navbar extends Component {
 				>
 					<span className="navbar-toggler-icon"></span>
 				</button>
-				<div className="collapse navbar-collapse" id="navbarContent">
+				<div className="collapse navbar-collapse">
 					<ul className="navbar-nav mr-auto">
 						<li className="navbar-item">
 							<Link to="/countries" className="nav-link">
 								Cases by country
 							</Link>
+						</li>
+					</ul>
+				</div>
+				<div className="collapse navbar-collapse">
+					<ul className="navbar-nav ml-auto">
+						<li className="navbar-item">
+							<a
+								href="https://github.com/devhambe"
+								className="nav-link"
+							>
+								<i class="fab fa-github mr-1"></i> GitHub
+							</a>
 						</li>
 					</ul>
 				</div>

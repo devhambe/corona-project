@@ -12,11 +12,11 @@ const countrySchema = new Schema({
 		required: true,
 	},
 	lat: {
-		type: Number,
+		type: String,
 		required: true,
 	},
 	lng: {
-		type: Number,
+		type: String,
 		required: true,
 	},
 	confirmed: {

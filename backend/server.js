@@ -17,6 +17,10 @@ const globalRouter = require("./routes/global");
 app.use("/countries", countriesRouter);
 app.use("/global", globalRouter);
 
+app.post("/mapbox_key", (req, res) => {
+	res.status(200).send(process.env.MAPBOX_API_KEY);
+});
+
 const uri = process.env.MONGO_URI;
 mongoose
 	.connect(uri, {
@@ -41,7 +45,7 @@ const job = schedule.scheduleJob("0 */12 * * *", (fireDate) => {
 });
 
 // updateResults.updateGlobalResults();
-// updateResults.updateCountryResults();
+updateResults.updateCountryResults();
 
 app.listen(5000, () => {
 	console.log("Server started");

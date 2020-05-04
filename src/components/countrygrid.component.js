@@ -41,12 +41,11 @@ export default class CountryGrid extends Component {
 				for (let k in res.data) {
 					for (let i in res.data[k]) {
 						if (
-							(res.data[k][i] === parseInt(res.data[k][i]), 10) &&
-							res.data[k][i]
+							res.data[k][i] &&
+							typeof res.data[k][i] == "number"
 						) {
 							res.data[k][i] = numberWithCommas(res.data[k][i]);
 						}
-						// console.log(numberWithCommas(res.data[k][i]));
 					}
 				}
 				this.setState({ countries: res.data });
