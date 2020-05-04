@@ -12,16 +12,16 @@ const Country = (props) => (
 		<div className="">
 			<h5 className="">{props.country.country}</h5>
 			<h6 className=" mb-2 text-muted">
-				Total Cases: {props.country.totalConfirmed}
+				Total Cases: {props.country.confirmed}
 			</h6>
 			<h6 className=" mb-2 text-muted">
-				Total Deaths: {props.country.totalDeaths}
+				Total Deaths: {props.country.deaths}
 			</h6>
 			<h6 className=" mb-2 text-muted">
-				Total Recovered: {props.country.totalRecovered}
+				Total Recovered: {props.country.recovered}
 			</h6>
 			<h6 className=" mb-2 text-muted">
-				Active Cases: {props.country.totalActive}
+				Active Cases: {props.country.active}
 			</h6>
 		</div>
 	</div>
@@ -40,9 +40,13 @@ export default class CountryGrid extends Component {
 			.then((res) => {
 				for (let k in res.data) {
 					for (let i in res.data[k]) {
-						if ((res.data[k][i] === parseInt(res.data[k][i]), 10)) {
+						if (
+							(res.data[k][i] === parseInt(res.data[k][i]), 10) &&
+							res.data[k][i]
+						) {
 							res.data[k][i] = numberWithCommas(res.data[k][i]);
 						}
+						// console.log(numberWithCommas(res.data[k][i]));
 					}
 				}
 				this.setState({ countries: res.data });

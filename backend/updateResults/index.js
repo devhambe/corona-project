@@ -60,31 +60,24 @@ function updateGlobalResults() {
 function updateCountryResults() {
 	let results = [];
 	axios
-		.get("https://api.covid19api.com/summary")
+		.get("https://corona.lmao.ninja/v2/countries")
 		.then((res) => {
-			for (let k in res.data.Countries) {
+			// console.log(res.data);
+			for (let k in res.data) {
 				const countryResult = {
-					country: res.data.Countries[k].Country,
-					countryCode: res.data.Countries[k].CountryCode,
-					countrySlug: res.data.Countries[k].Slug,
-					newConfirmed: res.data.Countries[k].NewConfirmed,
-					totalConfirmed: res.data.Countries[k].TotalConfirmed,
-					newDeaths: res.data.Countries[k].NewDeaths,
-					totalDeaths: res.data.Countries[k].TotalDeaths,
-					newRecovered: res.data.Countries[k].NewRecovered,
-					totalRecovered: res.data.Countries[k].TotalRecovered,
+					country: res.data[k].country,
+					countryCode: res.data[k].countryInfo.iso2,
+					lat: res.data[k].countryInfo.lat,
+					lng: res.data[k].countryInfo.long,
+					confirmed: res.data[k].cases,
+					deaths: res.data[k].deaths,
+					recovered: res.data[k].recovered,
+					critical: res.data[k].critical,
+					active: res.data[k].active,
+					lastUpdate: res.data[k].updated,
 				};
-				countryResult.newActive =
-					countryResult.newConfirmed -
-					(countryResult.newDeaths + countryResult.newRecovered);
-
-				countryResult.totalActive =
-					countryResult.totalConfirmed -
-					(countryResult.totalDeaths + countryResult.totalRecovered);
-
 				results.push(countryResult);
 			}
-
 			async.eachSeries(
 				results,
 				function updateObject(obj, done) {
@@ -93,14 +86,15 @@ function updateCountryResults() {
 							country: obj.country,
 						},
 						{
-							newConfirmed: obj.newConfirmed,
-							totalConfirmed: obj.totalConfirmed,
-							newDeaths: obj.newDeaths,
-							totalDeaths: obj.totalDeaths,
-							newRecovered: obj.newRecovered,
-							totalRecovered: obj.totalRecovered,
-							newActive: obj.newActive,
-							totalActive: obj.totalActive,
+							countryCode: obj.countryCode,
+							lat: obj.lat,
+							lng: obj.lng,
+							confirmed: obj.confirmed,
+							deaths: obj.deaths,
+							recovered: obj.recovered,
+							active: obj.active,
+							critical: obj.critical,
+							lastUpdate: obj.lastUpdate,
 						},
 						{
 							upsert: true,

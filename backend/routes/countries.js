@@ -3,7 +3,7 @@ const Country = require("../models/country.model");
 
 router.get("/", (req, res) => {
 	Country.find()
-		.sort({ totalConfirmed: -1 })
+		.sort({ confirmed: -1 })
 		.then((countries) => {
 			res.json(countries);
 		})

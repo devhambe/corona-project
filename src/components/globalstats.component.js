@@ -33,8 +33,8 @@ export default class GlobalStats extends Component {
 						<span className="badge badge-primary">
 							{this.state.data.newConfirmed} today
 						</span>
-						<div class="progress mx-3 mt-3">
-							<div class="progress-bar bg-primary w-100"></div>
+						<div className="progress mx-3 mt-3">
+							<div className="progress-bar bg-primary w-100"></div>
 						</div>
 					</h4>
 				</div>
@@ -46,8 +46,8 @@ export default class GlobalStats extends Component {
 						<span className="badge badge-danger">
 							{this.state.data.newDeaths} today
 						</span>
-						<div class="progress mx-3 mt-3">
-							<div class="progress-bar bg-danger w-100"></div>
+						<div className="progress mx-3 mt-3">
+							<div className="progress-bar bg-danger w-100"></div>
 						</div>
 					</h4>
 				</div>
@@ -59,8 +59,8 @@ export default class GlobalStats extends Component {
 						<span className="badge badge-success ml-3">
 							{this.state.data.newRecovered} today
 						</span>
-						<div class="progress mx-3 mt-3">
-							<div class="progress-bar bg-success w-100"></div>
+						<div className="progress mx-3 mt-3">
+							<div className="progress-bar bg-success w-100"></div>
 						</div>
 					</h4>
 				</div>
@@ -72,8 +72,8 @@ export default class GlobalStats extends Component {
 						<span className="badge badge-info ml-3">
 							{this.state.data.newActive} today
 						</span>
-						<div class="progress mx-3 mt-3">
-							<div class="progress-bar bg-info w-100"></div>
+						<div className="progress mx-3 mt-3">
+							<div className="progress-bar bg-info w-100"></div>
 						</div>
 					</h4>
 				</div>

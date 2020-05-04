@@ -11,39 +11,35 @@ const countrySchema = new Schema({
 		type: String,
 		required: true,
 	},
-	countrySlug: {
-		type: String,
-		required: true,
-	},
-	newConfirmed: {
+	lat: {
 		type: Number,
 		required: true,
 	},
-	totalConfirmed: {
+	lng: {
 		type: Number,
 		required: true,
 	},
-	newDeaths: {
+	confirmed: {
 		type: Number,
 		required: true,
 	},
-	totalDeaths: {
+	deaths: {
 		type: Number,
 		required: true,
 	},
-	newRecovered: {
+	recovered: {
 		type: Number,
 		required: true,
 	},
-	totalRecovered: {
+	active: {
 		type: Number,
 		required: true,
 	},
-	newActive: {
+	critical: {
 		type: Number,
 		required: true,
 	},
-	totalActive: {
+	lastUpdate: {
 		type: Number,
 		required: true,
 	},
