@@ -15,8 +15,9 @@ body {
 }
 
 .country-column img {
+	padding: 10px;
 	height: 128px;
-	width: 128px;
+	width: 192px;
 }
 
 .progress {
@@ -34,4 +35,21 @@ body {
 .country-popup {
 	background-color: white;
 	color: black;
+}
+
+.topcountries {
+	max-height: 650px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.topcountries-img {
+	/* height: 55.66px; */
+	/* width: 83.33px; */
+}
+
+.topcountries-info {
+	font-size: small;
+	background: #f2f2f2;
+	margin: 8px;
 }

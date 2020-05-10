@@ -45,7 +45,7 @@ const job = schedule.scheduleJob("0 */12 * * *", (fireDate) => {
 });
 
 // updateResults.updateGlobalResults();
-updateResults.updateCountryResults();
+// updateResults.updateCountryResults();
 
 app.listen(5000, () => {
 	console.log("Server started");

@@ -64,6 +64,17 @@ function updateCountryResults() {
 		.then((res) => {
 			// console.log(res.data);
 			for (let k in res.data) {
+				if (res.data[k].countryInfo.iso2 == null) {
+					switch (res.data[k].country) {
+						case "MS Zaandam":
+							res.data[k].countryInfo.iso2 = "NL";
+							break;
+						case "Diamond Princess":
+							res.data[k].countryInfo.iso2 = "GB";
+							break;
+					}
+				}
+
 				const countryResult = {
 					country: res.data[k].country,
 					countryCode: res.data[k].countryInfo.iso2,

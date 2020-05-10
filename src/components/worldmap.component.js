@@ -62,30 +62,24 @@ export default class WorldMap extends Component {
 			};
 
 			return (
-				<div className="row">
-					<div className="column col-md-3"></div>
-					<div className="column col-md-9">
-						<div className="world-map">
-							<Map center={position} zoom={this.state.zoom}>
-								<TileLayer
-									attribution='&amp;copy <a href="https://www.mapbox.com/">Mapbox</a> contributors'
-									url={`https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=${this.state.mapboxKey}`}
-								/>
-								<LayerGroup>
-									<GeoJSON
-										data={geoJson}
-										pointToLayer={function (
-											feature,
-											latlng
-										) {
-											return L.circleMarker(latlng, {
-												radius: 10,
-												color: "#007bff",
-											});
-										}}
-										onEachFeature={function (data, layer) {
-											layer.bindPopup(
-												`
+				<div className="world-map">
+					<Map center={position} zoom={this.state.zoom}>
+						<TileLayer
+							attribution='&amp;copy <a href="https://www.mapbox.com/">Mapbox</a> contributors'
+							url={`https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=${this.state.mapboxKey}`}
+						/>
+						<LayerGroup>
+							<GeoJSON
+								data={geoJson}
+								pointToLayer={function (feature, latlng) {
+									return L.circleMarker(latlng, {
+										radius: 10,
+										color: "#007bff",
+									});
+								}}
+								onEachFeature={function (data, layer) {
+									layer.bindPopup(
+										`
 												<div class="country-popup">
 													<h5>${data.properties.country.country}</h5>
 													<ul class="list-unstyled">
@@ -97,13 +91,11 @@ export default class WorldMap extends Component {
 													</ul>
 												</div>
 												`
-											);
-										}}
-									/>
-								</LayerGroup>
-							</Map>
-						</div>
-					</div>
+									);
+								}}
+							/>
+						</LayerGroup>
+					</Map>
 				</div>
 			);
 		} else {

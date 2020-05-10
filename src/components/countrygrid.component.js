@@ -5,7 +5,8 @@ import { numberWithCommas } from "../Utils";
 const Country = (props) => (
 	<div className="country-column col-md-3 column">
 		<img
-			src={`http://catamphetamine.gitlab.io/country-flag-icons/3x2/${props.country.countryCode}.svg`}
+			// src={`http://catamphetamine.gitlab.io/country-flag-icons/3x2/${props.country.countryCode}.svg`}
+			src={`https://disease.sh/assets/img/flags/${props.country.countryCode.toLowerCase()}.png`}
 			className="img-fluid"
 			alt={props.country.country}
 		/>

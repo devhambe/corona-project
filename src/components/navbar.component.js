@@ -35,7 +35,7 @@ export default class Navbar extends Component {
 								href="https://github.com/devhambe"
 								className="nav-link"
 							>
-								<i class="fab fa-github mr-1"></i> GitHub
+								<i className="fab fa-github mr-1"></i> GitHub
 							</a>
 						</li>
 					</ul>
