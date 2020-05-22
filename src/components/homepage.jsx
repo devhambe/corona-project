@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import TopCountries from "./topcountries.component";
-import WorldMap from "./worldmap.component";
-import GlobalStats from "./globalstats.component";
+import TopCountries from "./topcountries";
+import WorldMap from "./worldmap";
+import GlobalStats from "./globalstats";
 
-export default class MainPageComponents extends Component {
+export default class HomePage extends Component {
 	render() {
 		return (
 			<div className="container-fluid">

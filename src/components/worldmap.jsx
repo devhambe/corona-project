@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactLoading from "react-loading";
 import axios from "axios";
 import L from "leaflet";
 import { Map, TileLayer, GeoJSON, LayerGroup } from "react-leaflet";
@@ -80,17 +81,17 @@ export default class WorldMap extends Component {
 								onEachFeature={function (data, layer) {
 									layer.bindPopup(
 										`
-												<div class="country-popup">
-													<h5>${data.properties.country.country}</h5>
-													<ul class="list-unstyled">
-														<li><strong>Cases:</strong> ${data.properties.country.confirmed}</li>
-														<li><strong>Deaths:</strong> ${data.properties.country.deaths}</li>
-														<li><strong>Recovered:</strong> ${data.properties.country.recovered}</li>
-														<li><strong>Active:</strong> ${data.properties.country.active}</li>
-														<li><strong>Critical:</strong> ${data.properties.country.critical}</li>
-													</ul>
-												</div>
-												`
+											<div class="country-popup">
+												<h5>${data.properties.country.country}</h5>
+												<ul class="list-unstyled">
+													<li><strong>Cases:</strong> ${data.properties.country.confirmed}</li>
+													<li><strong>Deaths:</strong> ${data.properties.country.deaths}</li>
+													<li><strong>Recovered:</strong> ${data.properties.country.recovered}</li>
+													<li><strong>Active:</strong> ${data.properties.country.active}</li>
+													<li><strong>Critical:</strong> ${data.properties.country.critical}</li>
+												</ul>
+											</div>
+											`
 									);
 								}}
 							/>
@@ -99,7 +100,16 @@ export default class WorldMap extends Component {
 				</div>
 			);
 		} else {
-			return <div>loading</div>;
+			return (
+				<div className="loading">
+					<ReactLoading
+						type={"spin"}
+						color={"#007bff"}
+						height={200}
+						width={200}
+					/>
+				</div>
+			);
 		}
 	}
 }

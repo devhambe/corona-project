@@ -1,35 +1,38 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { numberWithCommas } from "../Utils";
 
 const Country = (props) => (
 	<div className="row topcountries-info">
-		<div className="col-md">
-			<div className="row">
-				<div className="col-md">{props.country.country}</div>
+		<Link to={`/countries/${props.country.country}`} className="link">
+			<div className="col-md">
+				<div className="row">
+					<div className="col-md">{props.country.country}</div>
+				</div>
+				<div className="row">
+					<div className="col-md">
+						<img
+							src={`https://disease.sh/assets/img/flags/${props.country.countryCode.toLowerCase()}.png`}
+							className="img-fluid rounded topcountries-img"
+							alt={props.country.country}
+						/>
+					</div>
+					<div className="col-md">
+						Cases: <br />
+						{props.country.confirmed}
+					</div>
+					<div className="col-md">
+						Deaths: <br />
+						{props.country.deaths}
+					</div>
+					<div className="col-md">
+						Recovered: <br />
+						{props.country.recovered}
+					</div>
+				</div>
 			</div>
-			<div className="row">
-				<div className="col-md">
-					<img
-						src={`https://disease.sh/assets/img/flags/${props.country.countryCode.toLowerCase()}.png`}
-						className="img-fluid rounded topcountries-img"
-						alt={props.country.country}
-					/>
-				</div>
-				<div className="col-md">
-					Cases: <br />
-					{props.country.confirmed}
-				</div>
-				<div className="col-md">
-					Deaths: <br />
-					{props.country.deaths}
-				</div>
-				<div className="col-md">
-					Recovered: <br />
-					{props.country.recovered}
-				</div>
-			</div>
-		</div>
+		</Link>
 	</div>
 );
 

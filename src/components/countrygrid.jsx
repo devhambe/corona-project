@@ -1,30 +1,32 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { numberWithCommas } from "../Utils";
 
 const Country = (props) => (
 	<div className="country-column col-md-3 column">
-		<img
-			// src={`http://catamphetamine.gitlab.io/country-flag-icons/3x2/${props.country.countryCode}.svg`}
-			src={`https://disease.sh/assets/img/flags/${props.country.countryCode.toLowerCase()}.png`}
-			className="img-fluid"
-			alt={props.country.country}
-		/>
-		<div className="">
-			<h5 className="">{props.country.country}</h5>
-			<h6 className=" mb-2 text-muted">
-				Total Cases: {props.country.confirmed}
-			</h6>
-			<h6 className=" mb-2 text-muted">
-				Total Deaths: {props.country.deaths}
-			</h6>
-			<h6 className=" mb-2 text-muted">
-				Total Recovered: {props.country.recovered}
-			</h6>
-			<h6 className=" mb-2 text-muted">
-				Active Cases: {props.country.active}
-			</h6>
-		</div>
+		<Link to={`/countries/${props.country.country}`} className="link">
+			<img
+				src={`https://disease.sh/assets/img/flags/${props.country.countryCode.toLowerCase()}.png`}
+				className="img-fluid"
+				alt={props.country.country}
+			/>
+			<div>
+				<h5 className="">{props.country.country}</h5>
+				<h6 className=" mb-2 text-muted">
+					Total Cases: {props.country.confirmed}
+				</h6>
+				<h6 className=" mb-2 text-muted">
+					Total Deaths: {props.country.deaths}
+				</h6>
+				<h6 className=" mb-2 text-muted">
+					Total Recovered: {props.country.recovered}
+				</h6>
+				<h6 className=" mb-2 text-muted">
+					Active Cases: {props.country.active}
+				</h6>
+			</div>
+		</Link>
 	</div>
 );
 

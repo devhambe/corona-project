@@ -25,7 +25,6 @@ function updateGlobalResults() {
 				globalResult.totalConfirmed -
 				(globalResult.totalDeaths + globalResult.totalRecovered);
 
-			console.log(globalResult);
 			Global.updateOne(
 				{
 					name: globalResult.name,
@@ -85,6 +84,9 @@ function updateCountryResults() {
 					recovered: res.data[k].recovered,
 					critical: res.data[k].critical,
 					active: res.data[k].active,
+					tests: res.data[k].tests,
+					population: res.data[k].population,
+					continent: res.data[k].continent,
 					lastUpdate: res.data[k].updated,
 				};
 				results.push(countryResult);
@@ -105,6 +107,9 @@ function updateCountryResults() {
 							recovered: obj.recovered,
 							active: obj.active,
 							critical: obj.critical,
+							tests: obj.tests,
+							population: obj.population,
+							continent: obj.continent,
 							lastUpdate: obj.lastUpdate,
 						},
 						{
