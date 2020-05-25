@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ReactLoading from "react-loading";
+import Loading from "./loading";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { numberWithCommas } from "../Utils";
+import Moment from "react-moment";
 
 const StatsCard = (props) => (
 	<div className="col-md">
@@ -10,6 +10,11 @@ const StatsCard = (props) => (
 			<div className="card-body">
 				<h5 className="card-title">{props.title}</h5>
 				<p className="card-text">{props.stat}</p>
+				<div className="progress mt-3">
+					<div
+						className={`progress-bar bg-${props.color} w-100`}
+					></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -17,6 +22,7 @@ const StatsCard = (props) => (
 
 const CountryBanner = (props) => (
 	<div className="country-banner my-3">
+		<h2 className="text-center mb-3">{props.country.country}</h2>
 		<img
 			src={`https://disease.sh/assets/img/flags/${props.country.countryCode.toLowerCase()}.png`}
 			className="img-fluid rounded"
@@ -96,16 +102,6 @@ export default class CountryStats extends Component {
 				`http://localhost:5000/countries/${this.props.match.params.name}`
 			)
 			.then((res) => {
-				for (let k in res.data) {
-					for (let i in res.data[k]) {
-						if (
-							res.data[k][i] &&
-							typeof res.data[k][i] == "number"
-						) {
-							res.data[k][i] = numberWithCommas(res.data[k][i]);
-						}
-					}
-				}
 				this.setState({
 					country: res.data[0],
 				});
@@ -134,47 +130,52 @@ export default class CountryStats extends Component {
 					<div className="row">
 						<div className="col-md text-center my-2">
 							<h5>Population</h5>
-							<p>{this.state.country.population}</p>
+							<p>
+								{this.state.country.population.toLocaleString()}
+							</p>
 						</div>
 					</div>
 
 					<div className="row">
 						<StatsCard
 							title="Confirmed Cases"
-							stat={this.state.country.confirmed}
+							stat={this.state.country.confirmed.toLocaleString()}
+							color="primary"
 						/>
 						<StatsCard
 							title="Deaths"
-							stat={this.state.country.deaths}
+							stat={this.state.country.deaths.toLocaleString()}
+							color="danger"
 						/>
 						<StatsCard
 							title="Recovered"
-							stat={this.state.country.recovered}
+							stat={this.state.country.recovered.toLocaleString()}
+							color="success"
 						/>
 						<StatsCard
 							title="Active"
-							stat={this.state.country.active}
+							stat={this.state.country.active.toLocaleString()}
+							color="info"
 						/>
 						<StatsCard
 							title="Critical"
-							stat={this.state.country.critical}
+							stat={this.state.country.critical.toLocaleString()}
+							color="danger"
 						/>
+					</div>
+
+					<div className="row my-5">
+						<div className="col-md text-center text-muted">
+							Last update: <br />
+							<Moment utc>{this.state.country.lastUpdate}</Moment>
+						</div>
 					</div>
 
 					<NearbyCountries country={this.state.country.country} />
 				</div>
 			);
 		} else {
-			return (
-				<div className="loading">
-					<ReactLoading
-						type={"spin"}
-						color={"#007bff"}
-						height={200}
-						width={200}
-					/>
-				</div>
-			);
+			return <Loading />;
 		}
 	}
 }

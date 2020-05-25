@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import Loading from "./loading";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { numberWithCommas } from "../Utils";
 
 const Country = (props) => (
 	<div className="row topcountries-info">
@@ -20,15 +20,15 @@ const Country = (props) => (
 					</div>
 					<div className="col-md">
 						Cases: <br />
-						{props.country.confirmed}
+						{props.country.confirmed.toLocaleString()}
 					</div>
 					<div className="col-md">
 						Deaths: <br />
-						{props.country.deaths}
+						{props.country.deaths.toLocaleString()}
 					</div>
 					<div className="col-md">
 						Recovered: <br />
-						{props.country.recovered}
+						{props.country.recovered.toLocaleString()}
 					</div>
 				</div>
 			</div>
@@ -47,16 +47,6 @@ export default class TopCountries extends Component {
 		axios
 			.get("http://localhost:5000/countries/limit/10")
 			.then((res) => {
-				for (let k in res.data) {
-					for (let i in res.data[k]) {
-						if (
-							res.data[k][i] &&
-							typeof res.data[k][i] == "number"
-						) {
-							res.data[k][i] = numberWithCommas(res.data[k][i]);
-						}
-					}
-				}
 				this.setState({ countries: res.data });
 			})
 			.catch((error) => {
@@ -73,6 +63,10 @@ export default class TopCountries extends Component {
 	}
 
 	render() {
-		return <div>{this.countryList(this.state.countries)}</div>;
+		if (this.state.countries != 0) {
+			return <div>{this.countryList(this.state.countries)}</div>;
+		} else {
+			return <Loading />;
+		}
 	}
 }

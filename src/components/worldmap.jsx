@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import ReactLoading from "react-loading";
+import Loading from "./loading";
 import axios from "axios";
 import L from "leaflet";
 import { Map, TileLayer, GeoJSON, LayerGroup } from "react-leaflet";
-import { numberWithCommas } from "../Utils";
 
 export default class WorldMap extends Component {
 	state = {
@@ -25,16 +24,6 @@ export default class WorldMap extends Component {
 		axios
 			.get("http://localhost:5000/countries/")
 			.then((res) => {
-				for (let k in res.data) {
-					for (let i in res.data[k]) {
-						if (
-							res.data[k][i] &&
-							typeof res.data[k][i] == "number"
-						) {
-							res.data[k][i] = numberWithCommas(res.data[k][i]);
-						}
-					}
-				}
 				this.setState({ countries: res.data });
 			})
 			.catch((error) => {
@@ -100,16 +89,7 @@ export default class WorldMap extends Component {
 				</div>
 			);
 		} else {
-			return (
-				<div className="loading">
-					<ReactLoading
-						type={"spin"}
-						color={"#007bff"}
-						height={200}
-						width={200}
-					/>
-				</div>
-			);
+			return <Loading />;
 		}
 	}
 }

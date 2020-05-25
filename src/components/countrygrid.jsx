@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import Loading from "./loading";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { numberWithCommas } from "../Utils";
 
 const Country = (props) => (
 	<div className="country-column col-md-3 column">
@@ -12,18 +12,18 @@ const Country = (props) => (
 				alt={props.country.country}
 			/>
 			<div>
-				<h5 className="">{props.country.country}</h5>
+				<h5>{props.country.country}</h5>
 				<h6 className=" mb-2 text-muted">
-					Total Cases: {props.country.confirmed}
+					Total Cases: {props.country.confirmed.toLocaleString()}
 				</h6>
 				<h6 className=" mb-2 text-muted">
-					Total Deaths: {props.country.deaths}
+					Total Deaths: {props.country.deaths.toLocaleString()}
 				</h6>
 				<h6 className=" mb-2 text-muted">
-					Total Recovered: {props.country.recovered}
+					Total Recovered: {props.country.recovered.toLocaleString()}
 				</h6>
 				<h6 className=" mb-2 text-muted">
-					Active Cases: {props.country.active}
+					Active Cases: {props.country.active.toLocaleString()}
 				</h6>
 			</div>
 		</Link>
@@ -41,16 +41,6 @@ export default class CountryGrid extends Component {
 		axios
 			.get("http://localhost:5000/countries/")
 			.then((res) => {
-				for (let k in res.data) {
-					for (let i in res.data[k]) {
-						if (
-							res.data[k][i] &&
-							typeof res.data[k][i] == "number"
-						) {
-							res.data[k][i] = numberWithCommas(res.data[k][i]);
-						}
-					}
-				}
 				this.setState({ countries: res.data });
 			})
 			.catch((error) => {
@@ -81,17 +71,23 @@ export default class CountryGrid extends Component {
 			}
 		);
 
-		return (
-			<div className="container-fluid">
-				<input
-					type="text"
-					className="form-control mt-2"
-					placeholder="Search"
-					value={this.state.search}
-					onChange={this.updateSearch.bind(this)}
-				/>
-				<div className="row">{this.countryList(filteredCountries)}</div>
-			</div>
-		);
+		if (this.state.countries.length != 0) {
+			return (
+				<div className="container-fluid">
+					<input
+						type="text"
+						className="form-control mt-2"
+						placeholder="Search"
+						value={this.state.search}
+						onChange={this.updateSearch.bind(this)}
+					/>
+					<div className="row">
+						{this.countryList(filteredCountries)}
+					</div>
+				</div>
+			);
+		} else {
+			return <Loading />;
+		}
 	}
 }
