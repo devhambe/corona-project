@@ -80,7 +80,7 @@ export default class WorldMap extends Component {
 													<li><strong>Critical:</strong> ${data.properties.country.critical.toLocaleString()}</li>
 												</ul>
 											</div>
-											`
+										`
 									);
 								}}
 							/>
