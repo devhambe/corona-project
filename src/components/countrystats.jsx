@@ -8,7 +8,10 @@ const StatsCard = (props) => (
 	<div className="col-md">
 		<div className="card">
 			<div className="card-body">
-				<h5 className="card-title">{props.title}</h5>
+				<h5 className="card-title">
+					<i className={`fas ${props.icon} mr-1`}></i>
+					{props.title}
+				</h5>
 				<p className="card-text">{props.stat}</p>
 				<div className="progress mt-3">
 					<div
@@ -139,26 +142,31 @@ export default class CountryStats extends Component {
 							title="Confirmed Cases"
 							stat={this.state.country.confirmed.toLocaleString()}
 							color="primary"
+							icon="fa-viruses"
 						/>
 						<StatsCard
 							title="Deaths"
 							stat={this.state.country.deaths.toLocaleString()}
 							color="danger"
+							icon="fa-cross"
 						/>
 						<StatsCard
 							title="Recovered"
 							stat={this.state.country.recovered.toLocaleString()}
 							color="success"
+							icon="fa-briefcase-medical"
 						/>
 						<StatsCard
 							title="Active"
 							stat={this.state.country.active.toLocaleString()}
 							color="warning"
+							icon="fa-head-side-cough"
 						/>
 						<StatsCard
 							title="Critical"
 							stat={this.state.country.critical.toLocaleString()}
 							color="danger"
+							icon="fa-exclamation-circle"
 						/>
 					</div>
 
@@ -167,6 +175,7 @@ export default class CountryStats extends Component {
 							title="Tests Performed"
 							stat={this.state.country.tests.toLocaleString()}
 							color="info"
+							icon="fa-vial"
 						/>
 						<StatsCard
 							title="Tests Performed Per 1 Million"
@@ -176,6 +185,7 @@ export default class CountryStats extends Component {
 									1000000
 							).toLocaleString()}
 							color="info"
+							icon="fa-vials"
 						/>
 					</div>
 

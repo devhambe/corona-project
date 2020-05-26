@@ -6,6 +6,7 @@ const StatsColumn = (props) => (
 	<div className="stat col-md-3 column">
 		<h4>
 			<p>{props.title}</p>
+			<i className={`fas ${props.icon} mb-2`}></i>
 			<p>{props.total}</p>
 			<span className={`badge badge-${props.color}`}>
 				{props.new} today
@@ -44,6 +45,7 @@ export default class GlobalStats extends Component {
 						total={this.state.data.totalConfirmed.toLocaleString()}
 						new={this.state.data.newConfirmed.toLocaleString()}
 						color="primary"
+						icon="fa-viruses"
 					/>
 
 					<StatsColumn
@@ -51,6 +53,7 @@ export default class GlobalStats extends Component {
 						total={this.state.data.totalDeaths.toLocaleString()}
 						new={this.state.data.newDeaths.toLocaleString()}
 						color="danger"
+						icon="fa-cross"
 					/>
 
 					<StatsColumn
@@ -58,6 +61,7 @@ export default class GlobalStats extends Component {
 						total={this.state.data.totalRecovered.toLocaleString()}
 						new={this.state.data.newRecovered.toLocaleString()}
 						color="success"
+						icon="fa-briefcase-medical"
 					/>
 
 					<StatsColumn
@@ -65,6 +69,7 @@ export default class GlobalStats extends Component {
 						total={this.state.data.totalActive.toLocaleString()}
 						new={this.state.data.newActive.toLocaleString()}
 						color="warning"
+						icon="fa-head-side-cough"
 					/>
 				</div>
 			);
