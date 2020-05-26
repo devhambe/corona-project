@@ -73,11 +73,11 @@ export default class WorldMap extends Component {
 											<div class="country-popup">
 												<h5>${data.properties.country.country}</h5>
 												<ul class="list-unstyled">
-													<li><strong>Cases:</strong> ${data.properties.country.confirmed}</li>
-													<li><strong>Deaths:</strong> ${data.properties.country.deaths}</li>
-													<li><strong>Recovered:</strong> ${data.properties.country.recovered}</li>
-													<li><strong>Active:</strong> ${data.properties.country.active}</li>
-													<li><strong>Critical:</strong> ${data.properties.country.critical}</li>
+													<li><strong>Cases:</strong> ${data.properties.country.confirmed.toLocaleString()}</li>
+													<li><strong>Deaths:</strong> ${data.properties.country.deaths.toLocaleString()}</li>
+													<li><strong>Recovered:</strong> ${data.properties.country.recovered.toLocaleString()}</li>
+													<li><strong>Active:</strong> ${data.properties.country.active.toLocaleString()}</li>
+													<li><strong>Critical:</strong> ${data.properties.country.critical.toLocaleString()}</li>
 												</ul>
 											</div>
 											`
