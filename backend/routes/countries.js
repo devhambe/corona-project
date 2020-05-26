@@ -12,6 +12,17 @@ router.get("/", (req, res) => {
 		});
 });
 
+router.get("/filter/:filter", (req, res) => {
+	Country.find()
+		.sort({ [`${req.params.filter}`]: -1 })
+		.then((countries) => {
+			res.json(countries);
+		})
+		.catch((error) => {
+			res.status(400).json(`Error: ${error}`);
+		});
+});
+
 router.get("/:name", (req, res) => {
 	Country.find({ country: req.params.name })
 		.then((country) => {
@@ -22,7 +33,7 @@ router.get("/:name", (req, res) => {
 		});
 });
 
-router.post("/:name/nearby", (req, res) => {
+router.get("/:name/nearby", (req, res) => {
 	Country.find({ country: req.params.name })
 		.then((country) => {
 			const countryName = country[0].country;

@@ -63,7 +63,7 @@ export default class TopCountries extends Component {
 	}
 
 	render() {
-		if (this.state.countries != 0) {
+		if (this.state.countries !== 0) {
 			return <div>{this.countryList(this.state.countries)}</div>;
 		} else {
 			return <Loading />;

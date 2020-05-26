@@ -40,9 +40,7 @@ class NearbyCountries extends Component {
 
 	updateNearby() {
 		axios
-			.post(
-				`http://localhost:5000/countries/${this.props.country}/nearby`
-			)
+			.get(`http://localhost:5000/countries/${this.props.country}/nearby`)
 			.then((res) => {
 				this.setState({
 					countries: res.data,
