@@ -6,7 +6,8 @@ export default class Navbar extends Component {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 				<Link to="/" className="navbar-brand">
-					Corona Project
+					Corona Project{" "}
+					<i className="fas fa-head-side-mask ml-1"></i>
 				</Link>
 				<button
 					className="navbar-toggler"
@@ -24,6 +25,7 @@ export default class Navbar extends Component {
 						<li className="navbar-item">
 							<Link to="/countries" className="nav-link">
 								Cases by country
+								<i className="fas fa-flag ml-1"></i>
 							</Link>
 						</li>
 					</ul>
@@ -35,7 +37,7 @@ export default class Navbar extends Component {
 								href="https://github.com/devhambe"
 								className="nav-link"
 							>
-								<i class="fab fa-github mr-1"></i> GitHub
+								<i className="fab fa-github mr-1"></i> GitHub
 							</a>
 						</li>
 					</ul>

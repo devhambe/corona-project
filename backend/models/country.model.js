@@ -39,6 +39,18 @@ const countrySchema = new Schema({
 		type: Number,
 		required: true,
 	},
+	tests: {
+		type: Number,
+		required: true,
+	},
+	population: {
+		type: Number,
+		required: true,
+	},
+	continent: {
+		type: String,
+		required: true,
+	},
 	lastUpdate: {
 		type: Number,
 		required: true,

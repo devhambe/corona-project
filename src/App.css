@@ -15,8 +15,9 @@ body {
 }
 
 .country-column img {
+	padding: 10px;
 	height: 128px;
-	width: 128px;
+	width: 192px;
 }
 
 .progress {
@@ -31,7 +32,53 @@ body {
 	padding: 15px;
 }
 
+.loading {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .country-popup {
 	background-color: white;
 	color: black;
+}
+
+.topcountries {
+	max-height: 650px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+/* .topcountries-img {
+	height: 55.66px;
+	width: 83.33px;
+} */
+
+.topcountries-info {
+	font-size: small;
+	background: #f9f9f9;
+	margin: 8px;
+}
+
+.link,
+.link:hover,
+.link:active,
+.link:active {
+	text-decoration: none;
+	color: inherit;
+}
+
+.country-banner img {
+	margin-left: 50%;
+	transform: translateX(-50%);
+}
+
+.nearby-country img {
+	height: auto;
+	width: 30%;
+}
+
+.nearby-country .img-thumbnail {
+	background: #343a40;
 }
