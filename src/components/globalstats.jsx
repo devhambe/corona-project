@@ -64,7 +64,7 @@ export default class GlobalStats extends Component {
 						title="Total Active"
 						total={this.state.data.totalActive.toLocaleString()}
 						new={this.state.data.newActive.toLocaleString()}
-						color="info"
+						color="warning"
 					/>
 				</div>
 			);

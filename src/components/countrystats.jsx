@@ -153,12 +153,29 @@ export default class CountryStats extends Component {
 						<StatsCard
 							title="Active"
 							stat={this.state.country.active.toLocaleString()}
-							color="info"
+							color="warning"
 						/>
 						<StatsCard
 							title="Critical"
 							stat={this.state.country.critical.toLocaleString()}
 							color="danger"
+						/>
+					</div>
+
+					<div className="row my-3">
+						<StatsCard
+							title="Tests Performed"
+							stat={this.state.country.tests.toLocaleString()}
+							color="info"
+						/>
+						<StatsCard
+							title="Tests Performed Per 1 Million"
+							stat={Math.ceil(
+								(this.state.country.tests /
+									this.state.country.population) *
+									1000000
+							).toLocaleString()}
+							color="info"
 						/>
 					</div>
 
